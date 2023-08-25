@@ -1,4 +1,3 @@
-const NAN: number = 0 / 0;
 const reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
 const reIsBinary = /^0b[01]+$/i;
 const reIsOctal = /^0o[0-7]+$/i;
@@ -18,24 +17,30 @@ export function toNumber(value: any): number {
   if (typeof value === 'number') {
     return value;
   }
-
   if (isSymbol(value)) {
-    return NAN;
+    return NaN;
   }
 
-  if (isObject(value)) {
-    const other = typeof value.valueOf === 'function' ? value.valueOf() : value;
-    value = isObject(other) ? `${other}` : other;
-  }
+  value = getCoercedValue(value);
 
   if (getTag(value) === '[object BigInt]') {
     throw new Error('Cannot convert a BigInt value to a number');
   }
 
-  if (typeof value !== 'string') {
-    return value === 0 ? value : +value;
-  }
+  return typeof value === 'string'
+    ? handleStringValue(value)
+    : handleNonStringValue(value);
+}
 
+function getCoercedValue(value: any): any {
+  if (isObject(value)) {
+    const other = typeof value.valueOf === 'function' ? value.valueOf() : value;
+    return isObject(other) ? `${other}` : other;
+  }
+  return value;
+}
+
+function handleStringValue(value: string): number {
   value = value.trim();
 
   const isBinary = reIsBinary.test(value);
@@ -48,4 +53,8 @@ export function toNumber(value: any): number {
   }
 
   return +value;
+}
+
+function handleNonStringValue(value: any): number {
+  return value === 0 ? value : +value;
 }
