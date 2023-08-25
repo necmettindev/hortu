@@ -9,7 +9,7 @@
 export function slice<T>(
   array: T[],
   start: number = 0,
-  end: number = array.length
+  end: number = array?.length
 ): T[] {
   const length = array ? array.length : 0;
 

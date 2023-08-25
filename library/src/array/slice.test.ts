@@ -29,4 +29,16 @@ describe('slice', () => {
   test('if end is greater than array length, return array', () => {
     expect(slice([1, 2, 3], 0, 4)).toEqual([1, 2, 3]);
   });
+
+  test('if start and end are negative, return array', () => {
+    expect(slice([1, 2, 3], -2, -1)).toEqual([2]);
+  });
+
+  test('should return empty array for null input', () => {
+    expect(slice(null as unknown as [])).toEqual([]);
+  });
+
+  test('should handle negative start values less than negative length', () => {
+    expect(slice([1, 2, 3], -4)).toEqual([1, 2, 3]);
+  });
 });
