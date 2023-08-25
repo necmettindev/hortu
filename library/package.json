@@ -1,7 +1,7 @@
 {
   "name": "hortu",
   "version": "0.0.1",
-  "description": "Hortu is a micro-performance focused alternative to Lodash, fully compatible with TypeScript.",
+  "description": "Hortu is a micro-performance focused alternative to Lodash, fully compatible with TypeScript and modular structure.",
   "keywords": [
     "lodash",
     "lodash alternative",
