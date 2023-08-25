@@ -1,18 +1,60 @@
-import { toFinite } from './toFinite.ts';
+import { toInteger } from './toInteger.ts';
+import { describe, test, expect } from 'vitest';
 
-/**
- * Converts a value to an integer by truncating the fractional part.
- *
- * @param value - The value to convert.
- * @returns Returns the converted integer.
- */
-export function toInteger(value: any): number {
-  const numberValue = toFinite(value);
-  if (numberValue === 0 || isNaN(numberValue)) {
-    return 0;
-  }
+describe('toInteger', () => {
+  test('if value is number, return number', () => {
+    expect(toInteger(1)).toBe(1);
+  });
 
-  const fractionalPart = numberValue % 1;
+  test('if value is string, return number', () => {
+    expect(toInteger('1')).toBe(1);
+  });
 
-  return fractionalPart ? numberValue - fractionalPart : numberValue;
-}
+  test('if value is boolean, return number', () => {
+    expect(toInteger(true)).toBe(1);
+  });
+
+  test('if value is symbol, return 0', () => {
+    expect(toInteger(Symbol('a'))).toBe(0);
+  });
+
+  test('if value is null, return 0', () => {
+    expect(toInteger(null)).toBe(0);
+  });
+
+  test('if value is undefined, return 0', () => {
+    expect(toInteger(undefined)).toBe(0);
+  });
+
+  test('if value is object, return 0', () => {
+    expect(toInteger({})).toBe(0);
+  });
+
+  test('if value is function, return 0', () => {
+    expect(toInteger(() => {})).toBe(0);
+  });
+
+  test('if value is array, return 0', () => {
+    expect(toInteger([])).toBe(0);
+  });
+
+  test('if value is regexp, return 0', () => {
+    expect(toInteger(/a/)).toBe(0);
+  });
+
+  test('if value is date, return 0', () => {
+    expect(toInteger(new Date(0))).toBe(0);
+  });
+
+  test('if value is error, return 0', () => {
+    expect(toInteger(new Error())).toBe(0);
+  });
+
+  test('if value is binary, return number', () => {
+    expect(toInteger('0b1')).toBe(1);
+  });
+
+  test('if value is octal, return number', () => {
+    expect(toInteger('0o1')).toBe(1);
+  });
+});
