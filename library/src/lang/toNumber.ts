@@ -1,5 +1,5 @@
 const NAN: number = 0 / 0;
-const reIsBadHex = /^[-+](0x|0X)[0-9a-fA-F]+$/;
+const reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
 const reIsBinary = /^0b[01]+$/i;
 const reIsOctal = /^0o[0-7]+$/i;
 const freeParseInt = parseInt;
@@ -43,5 +43,9 @@ export function toNumber(value: any): number {
     return freeParseInt(value.slice(2), isBinary ? 2 : 8);
   }
 
-  return reIsBadHex.test(value) ? NAN : +value;
+  if (reIsBadHex.test(value)) {
+    return NaN;
+  }
+
+  return +value;
 }
