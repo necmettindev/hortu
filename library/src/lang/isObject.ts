@@ -5,7 +5,6 @@
  * @returns Returns `true` if `value` is an object or a function, else `false`.
  */
 export function isObject(value: any): boolean {
-  // Directly checking null or undefined before type check.
   if (value == null) return false;
 
   const type = typeof value;
