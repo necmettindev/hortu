@@ -37,7 +37,8 @@
     "format": "prettier --write ./src",
     "format.check": "prettier --check ./src",
     "build": "tsup",
-    "publish": "npm publish"
+    "publish": "npm publish",
+    "slice-test": "node --loader ts-node/esm ./src/array/slice-test.ts"
   },
   "type": "module",
   "main": "./dist/index.js",
@@ -63,11 +64,13 @@
   },
   "devDependencies": {
     "@types/eslint": "^8.44.2",
+    "@types/node": "^20.5.6",
     "@typescript-eslint/eslint-plugin": "^6.4.1",
     "@typescript-eslint/parser": "^6.4.1",
     "@vitest/coverage-v8": "^0.34.3",
     "eslint": "^8.47.0",
     "jsdom": "^22.1.0",
+    "ts-node": "^10.9.1",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
