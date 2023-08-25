@@ -9,7 +9,7 @@ import { toInteger } from './toInteger.ts';
  */
 export function toSafeInteger(value: any): number {
   if (!value) {
-    return value === 0 ? value : 0;
+    return 0;
   }
   value = toInteger(value);
   if (value <= -Number.MAX_SAFE_INTEGER) {

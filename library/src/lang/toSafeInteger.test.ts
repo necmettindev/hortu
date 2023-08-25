@@ -61,4 +61,28 @@ describe('toSafeInteger', () => {
   test('if value is number array, return number', () => {
     expect(toSafeInteger([1, 2])).toBe(0);
   });
+
+  test('should return -Number.MAX_SAFE_INTEGER for values less than -Number.MAX_SAFE_INTEGER', () => {
+    const valuesBelowSafeMin = [
+      -Number.MAX_SAFE_INTEGER - 1,
+      -Number.MAX_SAFE_INTEGER - 1000,
+      -Number.MAX_SAFE_INTEGER * 2,
+    ];
+
+    valuesBelowSafeMin.forEach((val) => {
+      expect(toSafeInteger(val)).toBe(-Number.MAX_SAFE_INTEGER);
+    });
+  });
+
+  test('should return Number.MAX_SAFE_INTEGER for values greater than Number.MAX_SAFE_INTEGER', () => {
+    const valuesAboveSafeMax = [
+      Number.MAX_SAFE_INTEGER + 1,
+      Number.MAX_SAFE_INTEGER + 1000,
+      Number.MAX_SAFE_INTEGER * 2,
+    ];
+
+    valuesAboveSafeMax.forEach((val) => {
+      expect(toSafeInteger(val)).toBe(Number.MAX_SAFE_INTEGER);
+    });
+  });
 });
