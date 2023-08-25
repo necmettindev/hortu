@@ -1,0 +1,17 @@
+{
+  "name": "hortu",
+  "version": "0.0.0",
+  "description": "Hortu is a micro-performance focused alternative to Lodash, fully compatible with TypeScript.",
+  "author": "Necmettin <hi@necmettin.dev>",
+  "homepage": "https://hortu.necmettin.dev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/necmettindev/hortu"
+  },
+  "private": true,
+  "devDependencies": {
+    "prettier": "^3.0.2",
+    "typescript": "^5.2.2"
+  }
+}
