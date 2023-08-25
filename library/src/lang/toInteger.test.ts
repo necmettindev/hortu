@@ -57,4 +57,12 @@ describe('toInteger', () => {
   test('if value is octal, return number', () => {
     expect(toInteger('0o1')).toBe(1);
   });
+
+  test('if value is float, return number', () => {
+    expect(toInteger(1.1)).toBe(1);
+  });
+
+  test('if value is negative float, return number', () => {
+    expect(toInteger(-1.1)).toBe(-1);
+  });
 });
