@@ -64,4 +64,30 @@ describe('toString', () => {
   test('if value is octal, return string', () => {
     expect(toString('0o1')).toBe('0o1');
   });
+
+  test('if value is mixed string number array, return string', () => {
+    expect(toString(['a', 1])).toBe('a,1');
+  });
+
+  test('if value is mixed string number object, return string', () => {
+    expect(toString([{ a: 1 }, 1])).toBe('[object Object],1');
+  });
+
+  test('should correctly convert arrays to string', () => {
+    const input = [1, 'test', null, undefined, [1, 2], Symbol('test')];
+    const expectedOutput = '1,test,,,1,2,Symbol(test)';
+
+    const result = toString(input);
+
+    expect(result).toBe(expectedOutput);
+  });
+
+  test('should correctly convert -0 to string', () => {
+    const input = -0;
+    const expectedOutput = '-0';
+
+    const result = toString(input);
+
+    expect(result).toBe(expectedOutput);
+  });
 });
