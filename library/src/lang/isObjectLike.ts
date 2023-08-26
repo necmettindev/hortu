@@ -7,6 +7,5 @@
 export function isObjectLike(value: any): boolean {
   if (value == null) return false;
 
-  const type = typeof value;
-  return type === 'object';
+  return typeof value === 'object';
 }
