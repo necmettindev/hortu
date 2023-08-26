@@ -29,11 +29,6 @@ interface DebouncedPromise<FReturn> {
  * @returns A debounced version of the provided function. This debounced function returns a promise
  *          that resolves with the result of the original function. It also has a `cancel` method to
  *          cancel any pending invocation of the original function.
- *
- * Example:
- *
- * const debouncedSave = debounce(saveData, 200);
- * debouncedSave(data);  // Will delay the invocation of `saveData` by 200ms.
  */
 export function debounce<Args extends unknown[], Result>(
   func: (...args: Args) => Result,
