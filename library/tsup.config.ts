@@ -6,4 +6,12 @@ export default defineConfig({
   format: ['esm', 'cjs'],
   dts: true,
   outDir: './dist',
+  minify: 'terser',
+  minifyIdentifiers: true,
+  minifySyntax: true,
+  minifyWhitespace: true,
+  shims: true,
+  splitting: false,
+  sourcemap: true,
+  bundle: true,
 });
